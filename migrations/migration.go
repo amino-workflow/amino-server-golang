@@ -2,8 +2,6 @@ package migrations
 
 import (
 	"amino-server/config"
-	"amino-server/model"
-	"fmt"
 	"io/ioutil"
 	"path/filepath"
 )
@@ -24,11 +22,6 @@ func Migrate() {
 	if err != nil {
 		panic(err.Error())
 	}
-	fmt.Println(string(query))
 	db := config.GetDB()
 	db.Exec(string(query))
-
-	var workflow model.Workflow
-	db.Where("name=?", "aopusnyhp9aso").Find(&workflow)
-	fmt.Println(workflow)
 }
